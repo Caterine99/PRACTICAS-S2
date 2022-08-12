@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{vmargin}
+\setpapersize{A4}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                  % margen superior
+{16.5cm}                 % anchura del texto
+{23.42cm}                % altura del texto
+{10pt}                   % altura de los encabezados
+{1cm}                    % espacio entre el texto y los encabezados
+{0pt}                    % altura del pie de página
+{2cm}                    % espacio entre el texto y el pie de página
+
+
+\begin{document}
+
+\textbf{UNIDAD 2: Práctica 06 - Análisis de datos categóricos}
+\vspace{1cm}\\
+\begin{center}\textbf{ESCALAS DE MEDICIÓN}\end{center}
+\vspace{1cm}
+
+Como la estadística analiza los datos y éstos son producto de las mediciones, necesitamos estudiar las escalas de medición. Este tema es de suma importancia, pues el tipo de escala de medición utilizado para reunir los datos ayuda a determinar el tipo de análisis a utilizar en los datos.\\
+
+Existen cuatro clases de escalas que aparecen de manera común en las ciencias: nominal, ordinal, de intervalo y de razón. Ellas difieren en el número de atributos matemáticos que poseen.\\
+
+Los tipos de datos univariados que vamos a analizar en esta práctica son:\\
+
+\textbf{Categóricos}. Tienen la característica de que todos los miembros de una categoría se consideran
+iguales en lo que se refiere a ese tipo. Este tipo de datos se subdivide en nominales y ordinales\\
+
+\begin{itemize}
+  \item \textbf{Nominales.}Los valores que pueden asumir sirven para clasificarlos pero no para ordenarlos. En caso de usarse números, sólo se adoptan como nombres o identificaciones.
+ \item \textbf{Ordinales.}Los valores que puede asumir este tipo de datos son categorías que conllevan un juicio de valor que exige comparar a los diferentes elementos de la muestra con respecto a este tipo con el objeto de establecer un orden. Es decir, que los datos se organizan a través de las relaciones de igualdad, mayor o menor
+\end{itemize}
+
+\vspace{1cm}
+\section{ANÁLISIS ESTADÍSTICO DE DATOS CATEGÓRICOS}
+\vspace{1cm}
+Ejemplo: Se realiza un estudio para conocer las preferencias sobre el tipo de gaseosa que se consume: "CC"=Coca Cola, "PC"=Pepsi Cola, "SC"=Salva Cola, para ello se toma una muestra aleatoria de 20 personas.\\
+
+1) Activar el directorio de trabajo
+<<>>=
+getwd()
+setwd("C:/Users/user/OneDrive/Paquete R/PRACTICAS-S2")
+@
+
+2) Crear un nuevo script y llamarle Script06-DatosCategoricos\\
+
+3) Crear un vector con el tipo de gaseosa y otro con la muestra generada aleatoriamente:
+
+<<>>=
+Tipo <- c("CC", "PC", "SC")
+Tipo
+
+#crea un vector en las que contiene los tres tipos de refrescos
+Consumo <- sample(Tipo, 20, replace=TRUE)
+Consumo
+
+#Genera una muestra de tamaño 20 obtenida de los elementos del vector Tipo
+#y los elementos se seleccionan con reemplazamiento
+
+
+#Suponiendo que se quiere editar o agregar datos
+data.entry(Consumo)
+@
+
+4) Guarde el vector en un archivo de datos
+<<>>=
+#Guardar los datos en su directorio de trabajo
+write(Consumo, "Consumo.txt")
+@
+
+5) Eliminar los objetos que existen en el espacio de trabajo (Workspace)
+<<>>=
+ls()
+rm(list=ls(all=TRUE))
+ls()
+@
+
+6) Leer o recuperar el vector de datos o archivo de texto
+<<>>=
+Consumo<-scan("Consumo.txt", what = character(), na.strings = "NA",
+flush=FALSE)
+Consumo
+
+ls()
+# Si el vector contiene caracteres se ocupa: what = character()
+# na.strings =”NA”, le indica a R que los valores faltantes son identificados con “NA”
+@
+
+
+7) Crear la tabla de distribución de frecuencias y proporciones
+<<>>=
+frec<-table(Consumo)
+frec
+prop<-table(Consumo)/length(Consumo)
+prop
+# Note que la salida por defecto no es para nada atractiva en comparación con el 
+#resto de paquetes estadísticos
+@
+
+
+\end{document}
