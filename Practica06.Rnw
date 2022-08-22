@@ -95,9 +95,62 @@ frec<-table(Consumo)
 frec
 prop<-table(Consumo)/length(Consumo)
 prop
-# Note que la salida por defecto no es para nada atractiva en comparación con el 
-#resto de paquetes estadísticos
+
 @
 
+Note que la salida por defecto no es para nada atractiva en comparación con el resto de paquetes estadísticos\\
+
+En cambio, si estamos usando LATEX y queremos incorporar estos cuadros o cualquier otro podemos utilizar el comando xtable(table(Consumo)) (NOTE QUE EL ARGUMENTO DEBE SER UN CUADRO), y con esto automáticamente se nos genera el código en LATEX y luego incorporarlo a nuestro informe, lo mejor de todo es que salida resultante es mucho más presentable.\\
+
+
+8) Conocer un resumen de los datos
+
+<<>>=
+summary(Consumo)
+# note que por tratarse de variables cualitativas únicamente muestra el número de elementos, y el tipo de datos
+@
+
+9) Realizar un gráfico de barras
+<<>>=
+# Para las frecuencias absolutas
+barplot(frec, main="Gráfico de barras", xlab=" Consumo", col=c("yellow", "white", "red"), sub="Agosto-2012")
+
+# Para las frecuencias relativas
+barplot(prop, main="Gráfico de barras", xlab=" Consumo\n", col=c("yellow", "white","red"), sub="Agosto-2012")
+@
+
+10) Realizar un gráfico de pastel
+
+<<>>=
+pie(frec, main="Gráfico de pastel", xlab="Tipo de Consumo", col=c("yellow", "white", "cyan"), sub="Agosto-2012")
+@
+
+Se puede especificar nombres para las categorías y el color de los sectores\\
+<<>>=
+names(frec)=c("Coca Cola", "Pepsi", "Salva Cola")
+pie(frec, main="Gráfico de pastel", xlab=" Consumo", radius=0.8, col=c("red", "gray","cyan"), sub="Agosto-2012")
+@
+
+Los colores se asignas dependiendo del orden en que han sido especificados por names()\\
+
+Note con la instrucción radius se especifica el tamaño de la figura, mientras más cerca de uno (uno de menos uno) se encuentre más grande será (el ángulo cambia).
+
+<<>>=
+
+@
+
+11) Colocar valores numéricos en los sectores del gráfico
+<<>>=
+n <- length(frec)
+
+hoja <- data.frame(frec)
+hoja
+
+etiq <- c(paste(hoja$Var1, "-", hoja$Freq))
+etiq
+
+pie(frec, main="Gráfico de pastel", labels=etiq, col=rainbow(n), border=TRUE)
+
+@
 
 \end{document}
