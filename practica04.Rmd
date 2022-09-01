@@ -1,0 +1,55 @@
+---
+output:
+  pdf_document: default
+---
+<!-- R Commander Markdown Template -->
+
+UNIDAD 1: Práctica 04-Importación y exportación de datos en R. Usando la interfaz gráfica (R-Commander)
+=======================
+
+### user
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# incluya este fragmento de c?digo literalmente para especificar las opciones
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+Posteriormente únicamente debemos elegir el archivo correspondiente en el cuadro que se muestra. El formato de los archivos pueden ser ".txt" o ".dat".
+
+```{r}
+Dataset <- read.table("C:/Users/user/OneDrive/Paquete R/PRACTICAS/datos01.txt", header=TRUE, stringsAsFactors=TRUE, sep="", na.strings="NA", dec=".",  strip.white=TRUE)
+```
+
+Finalmente para visualizar el conjunto de datos y asegurarnos que se han leído correctamente. Simplemente damos al clic al bot?n con la opción Visualizar conjunto de datos y se presentará un cuadro como el que se muestra en la siguiente figura (note que el nombre de la ventana corresponde al nombre que le fue asignado al conjunto de datos).
+```{r}
+
+```
+
+**2. IMPORTANDO DATOS DE EXCEL.**
+
+Si por el contrario los datos a los cuales deseamos realizar el an?lisis estad?stico se encuentran en
+formato XLS (versi?n 2003 de Microsoft Excel), debemos de seguir los siguientes pasos (Ilustraremos el procedimiento con el archivo "contaminaci?n_mexico.xls"):
+
+```{r}
+contaminación_mexico <- readXL("C:/Users/user/OneDrive/Paquete R/PRACTICAS-S2/contaminacion_mexico.xls", rownames=FALSE, header=TRUE, na="", sheet="contaminacion_mexico", stringsAsFactors=TRUE)
+```
+
+Al realizar el procedimiento anterior se mostrará el cuadro de dialogo que se muestra en la siguiente figura. En el únicamente debemos especificar el nombre que le queremos dar al conjunto de datos que deseamos importar.
+
+
+Finalmente únicamente debemos elegir el archivo en el cual se encuentra el conjunto de datos que deseamos analizar.
+
+Para visualizar el conjunto de datos. Se da clic en el botón "Visualizar conjunto de datos", obteniendo el siguiente cuadro que se muestra en la figura siguiente
+
+**3. IMPORTAR DATOS DE SPSS HACIA R.**
+A parte de leer archivos en formato texto y delimitados por comillas, R permite leer datos en una gran variedad de formato entre ellos se encuentra archivos el formato de SPSS ".sav".
+
+Para importar los datos. En el Men? Datos elegimos el submen? Importar datos, y dentro de este seleccionamos la opción "desde datos SPSS". Tal y como se muestra en la ilustración.
+
+```{r}
+
